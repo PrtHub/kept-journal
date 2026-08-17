@@ -10,6 +10,13 @@ export default function Footer() {
 
         <div className="flex items-center gap-6">
           <Link
+            href="/about"
+            className="hover:text-(--ink-2) transition-colors duration-220"
+          >
+            About
+          </Link>
+          <span>·</span>
+          <Link
             href="/privacy"
             className="hover:text-(--ink-2) transition-colors duration-220"
           >

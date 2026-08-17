@@ -44,8 +44,9 @@ export default function PrivacySection() {
 
             <div className="prose-container text-prose mb-10">
               <p>
-                No account. No sign-up. No sync. No analytics. There is no
-                server with your journal on it, because there is no server.
+                No account. No sign-up. No sync. No ads. Setup is measured;
+                nothing you do in the app is. There is no server with your
+                journal on it, because there is no server.
               </p>
             </div>
 
