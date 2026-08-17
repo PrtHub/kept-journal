@@ -1,0 +1,11 @@
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/config";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    { url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 1 },
+    { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${SITE_URL}/terms`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${SITE_URL}/support`, changeFrequency: "yearly", priority: 0.4 },
+  ];
+}

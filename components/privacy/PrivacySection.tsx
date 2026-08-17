@@ -1,7 +1,5 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import SectionLabel from "@/components/common/SectionLabel";
+import Reveal from "@/components/common/Reveal";
 
 const PRIVACY_FACTS = [
   {
@@ -14,7 +12,7 @@ const PRIVACY_FACTS = [
   },
   {
     label: "Face ID",
-    detail: "Optional lock, checked against your hardware before it's switched on",
+    detail: "Optional lock, checked against your hardware before it’s switched on",
   },
   {
     label: "Export",
@@ -31,87 +29,62 @@ const PRIVACY_FACTS = [
 ];
 
 export default function PrivacySection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="section-spacing">
-      <div
-        ref={ref}
-        className={`max-w-270 mx-auto px-6 transition-all duration-680 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
-      >
-        {/* Main Privacy Plane Card */}
-        <div
-          className="rounded-(--r-inner) border border-[#242830] bg-[#12141a] p-8 sm:p-12 mb-8"
-          style={{ padding: "var(--s7)" }}
-        >
-          <SectionLabel>PRIVACY</SectionLabel>
+      <div className="max-w-270 mx-auto px-6">
+        <Reveal>
+          {/* The heaviest block on the page: one plane card, hairline border,
+              no shadow. Padding steps down so 320px isn't all gutter. */}
+          <div className="rounded-(--r-inner) border border-[#242830] bg-[#12141a] p-5 sm:p-8 lg:p-12 mb-8">
+            <SectionLabel>PRIVACY</SectionLabel>
 
-          <h2 className="text-display mb-6 text-[#f4f4f1]">
-            Your journal is on your phone. Encrypted.
-          </h2>
+            <h2 className="text-display mb-6">
+              Your journal is on your phone. Encrypted.
+            </h2>
 
-          <div className="prose-container space-y-4 text-prose mb-8">
-            <p>
-              No account. No sign-up. No sync. No analytics. There is no server with your journal on it, because there is no server.
-            </p>
-          </div>
+            <div className="prose-container text-prose mb-10">
+              <p>
+                No account. No sign-up. No sync. No analytics. There is no
+                server with your journal on it, because there is no server.
+              </p>
+            </div>
 
-          <h3 className="text-question mb-4 text-[#f4f4f1]">
-            What leaves the phone, and when
-          </h3>
+            <h3 className="text-question mb-4">What leaves the phone, and when</h3>
 
-          <div className="prose-container space-y-4 text-prose mb-10">
-            <p>
-              When you ask for a summary, that period&apos;s entries are sent to be written up, and then forgotten — nothing is stored, and nothing is used to train anything. That is the only thing that ever goes out, and only when you tap.
-            </p>
-            <p>
-              Turn the summary off and nothing leaves at all.
-            </p>
-          </div>
+            <div className="prose-container space-y-4 text-prose mb-10">
+              <p>
+                When you ask for a summary, that period&apos;s entries are sent
+                to be written up, and then forgotten — nothing is stored, and
+                nothing is used to train anything. That is the only thing that
+                ever goes out, and only when you tap.
+              </p>
+              <p>Turn the summary off and nothing leaves at all.</p>
+            </div>
 
-          {/* Fact Table */}
-          <div className="w-full border-t border-[#242830]">
-            {PRIVACY_FACTS.map((row, idx) => (
-              <div
-                key={idx}
-                className="py-4 border-b border-[#242830] grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-baseline"
-              >
-                <div className="sm:col-span-4 font-medium text-[16px] text-[#f4f4f1] pr-0 sm:pr-6">
-                  {row.label}
+            <dl className="w-full border-t border-[#242830]">
+              {PRIVACY_FACTS.map((row) => (
+                <div
+                  key={row.label}
+                  className="py-4 border-b border-[#242830] grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 sm:items-baseline"
+                >
+                  <dt className="sm:col-span-4 font-medium text-[16px] text-(--ink) sm:pr-6">
+                    {row.label}
+                  </dt>
+                  <dd className="sm:col-span-8 m-0 text-[15px] sm:text-[16px] text-(--ink-2)">
+                    {row.detail}
+                  </dd>
                 </div>
-                <div className="sm:col-span-8 text-[15px] sm:text-[16px] text-[#9aa0a6]">
-                  {row.detail}
-                </div>
-              </div>
-            ))}
+              ))}
+            </dl>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Lead line under the card */}
-        <p className="text-lead text-[#f4f4f1] max-w-270">
-          Writing, reading, searching and exporting are free forever. The money buys the page Kept writes you — never access to your own life.
-        </p>
+        <Reveal delay={90}>
+          <p className="text-lead text-(--ink)">
+            Writing, reading, searching and exporting are free forever. The
+            money buys the page Kept writes you — never access to your own life.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

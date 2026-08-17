@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import LogoMark from "@/components/common/LogoMark";
+import { APP_STORE_URL } from "@/lib/config";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +26,7 @@ export default function Navbar() {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#12141a] focus:text-[#f4f4f1] focus:border focus:border-[#7ac4d1] focus:rounded-md text-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#12141a] focus:text-(--ink) focus:border focus:border-[#7ac4d1] focus:rounded-md text-sm"
       >
         Skip to content
       </a>
@@ -45,7 +46,7 @@ export default function Navbar() {
           >
             <LogoMark size={28} />
             <span
-              className="font-medium text-[19px] leading-none tracking-[-0.02em] text-[#f4f4f1]"
+              className="font-medium text-[19px] leading-none tracking-[-0.02em] text-(--ink)"
               style={{ fontFamily: "var(--font-geist)" }}
             >
               Kept
@@ -53,7 +54,7 @@ export default function Navbar() {
           </Link>
 
           <a
-            href="#download"
+            href={APP_STORE_URL}
             className="secondary-link text-[15px] font-normal leading-none"
             style={{ fontFamily: "var(--font-geist)" }}
           >

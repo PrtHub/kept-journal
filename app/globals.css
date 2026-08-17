@@ -9,8 +9,12 @@
 
   /* Ink */
   --ink: #f4f4f1; /* headings, primary text */
-  --ink-2: #9aa0a6; /* body prose */
-  --ink-3: #6b7178; /* labels, captions, meta */
+  --ink-2: #9aa0a6; /* body prose — 7.5:1 on --ground, 5.6:1 over the field */
+  /* Labels, captions, meta. The brief specifies 4.6:1, but #6b7178 only
+     reaches 3.99:1 on --ground and 3.0:1 over the field's brightest bloom,
+     which fails the brief's own 4.5:1 floor. This is the same tone measured
+     to the ratio it was meant to have: 4.6:1 at the worst point on the page. */
+  --ink-3: #8b9198;
 
   /* Accent — one only. Called "Ice". 10.02:1 on --ground */
   --accent: #7ac4d1;
@@ -54,6 +58,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* Dark scrollbars, form controls and overscroll gutters. Without this the
+   browser paints its own light chrome around a page that has no light mode. */
+html {
+  color-scheme: dark;
+  scrollbar-color: var(--hairline) var(--ground);
 }
 
 /* Typography styles matching spec */
@@ -114,7 +125,16 @@ body {
   line-height: 32px;
   font-weight: 400;
   color: var(--ink-2);
-  text-wrap: balance;
+  /* `pretty`, not `balance` — a lead runs to several lines, and balancing
+     those centres the ragged edge instead of just fixing the last one. */
+  text-wrap: pretty;
+}
+
+@media (max-width: 768px) {
+  .text-lead {
+    font-size: 19px;
+    line-height: 29px;
+  }
 }
 
 .text-prose {
@@ -123,6 +143,7 @@ body {
   line-height: 26px;
   font-weight: 400;
   color: var(--ink-2);
+  text-wrap: pretty;
 }
 
 .text-meta {
@@ -132,6 +153,7 @@ body {
   font-weight: 400;
   color: var(--ink-3);
   font-variant-numeric: tabular-nums;
+  text-wrap: pretty;
 }
 
 .text-label {
@@ -147,6 +169,32 @@ body {
 /* Prose container constraint */
 .prose-container {
   max-width: 62ch;
+}
+
+/* Prices and figures */
+.numeric {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Entry reveals.
+   The hidden state is scoped to `html.js`, so with scripting off the page
+   renders complete rather than blank — nothing here is load-bearing. */
+.reveal {
+  transition:
+    opacity var(--reveal-duration, var(--slow)) var(--ease),
+    transform var(--reveal-duration, var(--slow)) var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 16px)) scale(var(--reveal-scale, 1));
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
 }
 
 /* Section vertical rhythm */
@@ -239,5 +287,11 @@ details.faq-item[open] .faq-indicator {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Final position immediately, without waiting on an observer. */
+  .js .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

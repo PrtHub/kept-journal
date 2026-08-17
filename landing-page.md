@@ -58,7 +58,7 @@ Copy these exactly. The palette is called **Nocturne**.
   /* Ink */
   --ink: #f4f4f1; /* headings, primary text */
   --ink-2: #9aa0a6; /* body prose */
-  --ink-3: #6b7178; /* labels, captions, meta */
+  --ink-3: #8b9198; /* labels, captions, meta — see §11 */
 
   /* Accent — one only. Called "Ice". 10.02:1 on --ground */
   --accent: #7ac4d1;
@@ -601,7 +601,8 @@ No parallax. No scroll-jacking. No counters that tick up. No text that types its
 Non-negotiable, and the palette was designed to make it easy.
 
 - One `<h1>` — the hero headline. Headings descend in order with no levels skipped.
-- All text meets 4.5:1 on its own background. `--ink-2` on `--ground` is 7.4:1; `--ink-3` is 4.6:1 — do not go dimmer than `--ink-3`, and never use it for body copy.
+- All text meets 4.5:1 on its own background — and the background to measure against is **the field at its brightest bloom**, not flat `--ground`. On `--ground`, `--ink-2` is 7.5:1 and `--ink-3` is 6.2:1; over the bloom they fall to 5.6:1 and 4.6:1. Do not go dimmer than `--ink-3`, and never use it for body copy.
+  - `--ink-3` was originally specified as `#6b7178` at "4.6:1". That was wrong: it measures 3.99:1 on `--ground` and 3.0:1 over the bloom, failing this rule. `#8b9198` is the same tone at the ratio it was meant to have.
 - The field canvas is `aria-hidden="true"` and `pointer-events: none`.
 - Every screenshot needs a real `alt` describing what the screen shows, not "app screenshot".
 - Visible focus on every interactive element. Never `outline: none` without a replacement.

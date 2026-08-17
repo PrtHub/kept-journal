@@ -1,85 +1,101 @@
-import React from "react";
+import EntryMark from "@/components/common/EntryMark";
+
+const COUNTS = [
+  { label: "Entries", value: "14" },
+  { label: "Words written", value: "4,820" },
+  { label: "Days written on", value: "11" },
+  { label: "Longest gap", value: "3 days" },
+];
+
+const QUOTES = [
+  {
+    seed: "sum:sep18",
+    text: "The meeting ended twenty minutes before noon, and for the first time in months, I didn’t reach for my keys.",
+    when: "Sep 18 · 11:42",
+  },
+  {
+    seed: "sum:sep24",
+    text: "Realised that saying nothing wasn’t agreement, it was just fatigue.",
+    when: "Sep 24 · 22:15",
+  },
+];
+
+const QUESTIONS = [
+  "You noted feeling unprepared on Wednesday despite having notes. Where was the gap?",
+  "The word ‘relieved’ appeared after three separate cancellations. What made each feel like relief?",
+  "What would a Thursday without back-to-back commitments look like?",
+];
 
 export default function SummaryScreenMockup() {
   return (
-    <div
-      className="w-full max-w-170 mx-auto rounded-(--r-inner) border border-[#242830] bg-[#12141a] p-6 sm:p-10 select-none"
-      role="img"
-      aria-label="Kept generated one-page summary showing counted facts, exact quotes, and reflection questions"
-    >
-      {/* Summary Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#242830] pb-6 mb-8 gap-4">
-        <div>
-          <span className="font-mono text-[11px] uppercase tracking-widest text-[#7ac4d1]">
-            Fortnightly Summary
-          </span>
-          <p className="text-[19px] font-medium text-[#f4f4f1] mt-1">
-            September 16 – September 29
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-[12px] text-[#6b7178] px-2.5 py-1 rounded bg-[#171a20] border border-[#242830]">
-            Page 1 of 1
-          </span>
-        </div>
-      </div>
-
-      {/* Counted Facts Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-        {[
-          { label: "Entries", val: "14" },
-          { label: "Words Written", val: "4,820" },
-          { label: "Key Themes", val: "3" },
-          { label: "Quiet Evenings", val: "6" },
-        ].map((stat, idx) => (
-          <div
-            key={idx}
-            className="p-3.5 rounded-lg bg-[#171a20]/60 border border-[#242830]/80"
-          >
-            <p className="font-mono text-[11px] uppercase tracking-wider text-[#6b7178]">
-              {stat.label}
-            </p>
-            <p className="text-[20px] font-medium text-[#f4f4f1] font-mono mt-0.5">
-              {stat.val}
+    <figure className="m-0 flex flex-col items-center gap-3">
+      <div
+        className="w-full max-w-170 mx-auto rounded-(--r-inner) border border-[#242830] bg-[#12141a] p-6 sm:p-10 select-none"
+        role="img"
+        aria-label="A generated fortnightly page: counted figures across the period, two sentences quoted exactly from the entries they came from, and three questions to bring up."
+      >
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between border-b border-[#242830] pb-6 mb-8 gap-4">
+          <div>
+            <span className="text-label text-[#7ac4d1]">Fortnightly page</span>
+            <p className="text-[19px] font-medium text-(--ink) mt-1 numeric">
+              16 – 29 September
             </p>
           </div>
-        ))}
-      </div>
-
-      {/* Exact Quoted Excerpts */}
-      <div className="space-y-4 mb-8">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-[#6b7178]">
-          Exact Excerpts
-        </p>
-        <div className="p-4 rounded-lg bg-[#171a20]/40 border-l-2 border-[#7ac4d1] text-[15px] leading-5.5 text-[#f4f4f1]">
-          <p className="italic">
-            &ldquo;The meeting ended twenty minutes before noon, and for the first time in months, I didn&apos;t reach for my keys.&rdquo;
-          </p>
-          <span className="font-mono text-[11px] text-[#6b7178] block mt-1.5 not-italic">
-            Entry from Sep 18 · 11:42
+          <span className="font-mono text-[12px] text-(--ink-3) shrink-0">
+            Ready Sunday, as you chose
           </span>
         </div>
-        <div className="p-4 rounded-lg bg-[#171a20]/40 border-l-2 border-[#7ac4d1] text-[15px] leading-5.5 text-[#f4f4f1]">
-          <p className="italic">
-            &ldquo;Realised that saying nothing wasn&apos;t agreement, it was just fatigue.&rdquo;
-          </p>
-          <span className="font-mono text-[11px] text-[#6b7178] block mt-1.5 not-italic">
-            Entry from Sep 24 · 22:15
-          </span>
+
+        {/* Counted, never estimated — so every figure here is a plain count. */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-9">
+          {COUNTS.map((stat) => (
+            <div
+              key={stat.label}
+              className="p-3.5 rounded-lg bg-[#171a20]/60 border border-[#242830]/80"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-(--ink-3)">
+                {stat.label}
+              </p>
+              <p className="text-[22px] font-medium text-(--ink) mt-1 numeric">
+                {stat.value}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="space-y-3 mb-9">
+          <p className="text-label">In your own words</p>
+          {QUOTES.map((quote) => (
+            <div
+              key={quote.seed}
+              className="flex gap-3.5 p-4 rounded-lg bg-[#171a20]/40 border-l-2 border-[#7ac4d1]"
+            >
+              <EntryMark seed={quote.seed} size={26} weight={8} className="mt-0.5" />
+              <div>
+                <p className="text-[15px] leading-[23px] text-(--ink)">
+                  “{quote.text}”
+                </p>
+                <span className="font-mono text-[11px] text-(--ink-3) block mt-1.5">
+                  {quote.when}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div>
+          <p className="text-label mb-3">Three questions</p>
+          <ol className="space-y-2.5 text-[14px] sm:text-[15px] leading-[23px] text-(--ink-2) list-decimal list-outside pl-5 marker:text-(--ink-3) marker:font-mono marker:text-[12px]">
+            {QUESTIONS.map((question) => (
+              <li key={question}>{question}</li>
+            ))}
+          </ol>
         </div>
       </div>
 
-      {/* Three Questions */}
-      <div>
-        <p className="font-mono text-[11px] uppercase tracking-widest text-[#6b7178] mb-3">
-          Three Questions for Reflection
-        </p>
-        <ol className="space-y-2.5 text-[14px] sm:text-[15px] text-[#9aa0a6] leading-relaxed list-decimal list-inside pl-1">
-          <li>You noted feeling unprepared on Wednesday despite having notes. Where was the gap?</li>
-          <li>The word &apos;relieved&apos; appeared after three separate cancellations. What made each feel like relief?</li>
-          <li>What would a Thursday without back-to-back commitments look like?</li>
-        </ol>
-      </div>
-    </div>
+      <figcaption className="text-meta">
+        Illustration. Every page is written from one person&apos;s own entries.
+      </figcaption>
+    </figure>
   );
 }

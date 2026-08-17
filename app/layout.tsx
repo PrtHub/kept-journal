@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,59 +17,36 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const TITLE = "Kept — a private journal that writes you a page";
+const DESCRIPTION =
+  "The journal your therapist asked you to keep. Write freely between sessions, get one page back on the day you chose. Encrypted on your phone, no account, no server.";
+
 export const metadata: Metadata = {
-  title: "Kept — a private journal that writes you a page",
-  description:
-    "The journal your therapist asked you to keep. Write freely between sessions, get one page back on the day you chose. Encrypted on your phone, no account, no server.",
-  metadataBase: new URL("https://kept.app"),
-  alternates: {
-    canonical: "https://kept.app/",
-  },
-  other: {
-    "theme-color": "#0A0B0D",
-  },
+  title: TITLE,
+  description: DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
+  applicationName: "Kept",
   openGraph: {
-    title: "Kept — a private journal that writes you a page",
-    description:
-      "The journal your therapist asked you to keep. Write freely between sessions, get one page back on the day you chose. Encrypted on your phone, no account, no server.",
-    url: "https://kept.app/",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/",
     siteName: "Kept",
     type: "website",
+    locale: "en_GB",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kept — a private journal that writes you a page",
-    description:
-      "The journal your therapist asked you to keep. Write freely between sessions, get one page back on the day you chose. Encrypted on your phone, no account, no server.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Kept",
-  "operatingSystem": "iOS",
-  "applicationCategory": "LifestyleApplication",
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "Monthly Subscription",
-      "price": "9.99",
-      "priceCurrency": "USD",
-    },
-    {
-      "@type": "Offer",
-      "name": "Yearly Subscription",
-      "price": "39.99",
-      "priceCurrency": "USD",
-    },
-    {
-      "@type": "Offer",
-      "name": "One-Time Purchase",
-      "price": "99.99",
-      "priceCurrency": "USD",
-    },
-  ],
+export const viewport: Viewport = {
+  themeColor: "#0A0B0D",
+  // The app ships dark and does not follow the system setting; neither does
+  // this page. Declaring it keeps scrollbars and form controls dark too.
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -77,11 +55,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en-GB"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
+        {/* Marks scripting as available before first paint. Entry animations
+            hide themselves only behind this class, so with JS off the page
+            renders complete instead of blank. */}
         <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js')`,
+          }}
         />
       </head>
       <body>{children}</body>

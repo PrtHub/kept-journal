@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VS_SOURCE = `
 attribute vec2 a_position;
@@ -76,208 +76,225 @@ void main() {
 }
 `;
 
+const CSS_FIELD = `
+  radial-gradient(60% 50% at 38% 28%, #15303a 0%, transparent 70%),
+  radial-gradient(50% 40% at 72% 68%, #122a33 0%, transparent 75%),
+  radial-gradient(80% 70% at 50% 50%, #0d1519 0%, var(--ground) 100%)
+`;
+
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
 export default function AmbientField() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const fallbackRef = useRef<HTMLDivElement | null>(null);
+  const [live, setLive] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const fallback = fallbackRef.current;
     if (!canvas) return;
 
-    const showFallback = () => {
-      if (canvas) canvas.style.display = "none";
-      if (fallback) fallback.style.display = "block";
-    };
+    let disposed = false;
+    let teardown: (() => void) | null = null;
 
-    let gl: WebGLRenderingContext | null = null;
-    try {
-      gl = canvas.getContext("webgl", { powerPreference: "low-power" });
-    } catch {
-      showFallback();
-      return;
-    }
+    /**
+     * Builds the pipeline and starts rendering. Re-runnable: Strict Mode
+     * remounts this effect in development, and the GPU can hand the context
+     * back after a loss. Every failure path leaves `live` false so the CSS
+     * field below stays visible.
+     */
+    const start = () => {
+      if (disposed) return;
 
-    if (!gl) {
-      showFallback();
-      return;
-    }
-
-    const createShader = (type: number, source: string) => {
-      const shader = gl!.createShader(type);
-      if (!shader) return null;
-      gl!.shaderSource(shader, source);
-      gl!.compileShader(shader);
-      if (!gl!.getShaderParameter(shader, gl!.COMPILE_STATUS)) {
-        gl!.deleteShader(shader);
-        return null;
-      }
-      return shader;
-    };
-
-    const vs = createShader(gl.VERTEX_SHADER, VS_SOURCE);
-    const fs = createShader(gl.FRAGMENT_SHADER, FS_SOURCE);
-    if (!vs || !fs) {
-      showFallback();
-      return;
-    }
-
-    const program = gl.createProgram();
-    if (!program) {
-      showFallback();
-      return;
-    }
-
-    gl.attachShader(program, vs);
-    gl.attachShader(program, fs);
-    gl.linkProgram(program);
-
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      showFallback();
-      return;
-    }
-
-    gl.useProgram(program);
-
-    const positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
-      gl.STATIC_DRAW
-    );
-
-    const positionLocation = gl.getAttribLocation(program, "a_position");
-    gl.enableVertexAttribArray(positionLocation);
-    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
-
-    const resLoc = gl.getUniformLocation(program, "u_resolution");
-    const timeLoc = gl.getUniformLocation(program, "u_time");
-    const hueLoc = gl.getUniformLocation(program, "u_hue");
-    const densityLoc = gl.getUniformLocation(program, "u_density");
-    const speedLoc = gl.getUniformLocation(program, "u_speed");
-    const grainLoc = gl.getUniformLocation(program, "u_grain");
-
-    gl.uniform1f(hueLoc, 189.0);
-    gl.uniform1f(densityLoc, 3.4);
-    gl.uniform1f(speedLoc, 0.55);
-    gl.uniform1f(grainLoc, 1.0);
-
-    const resize = () => {
-      if (!canvas || !gl) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.uniform2f(resLoc, canvas.width, canvas.height);
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
-
-    let animationFrameId: number;
-    let isVisible = !document.hidden;
-    let isIntersecting = true;
-    const startTime = performance.now();
-    let lastDrawTime = 0;
-    const targetFpsInterval = 1000 / 30; // 30 FPS target
-
-    const render = (now: number) => {
-      if (prefersReducedMotion.matches) {
-        if (gl) {
-          gl.uniform1f(timeLoc, 0.0);
-          gl.drawArrays(gl.TRIANGLES, 0, 6);
-        }
+      let gl: WebGLRenderingContext | null = null;
+      try {
+        gl = canvas.getContext("webgl", {
+          // Transparent, not opaque. The shader writes alpha 1.0 so the result
+          // is identical when it works — but if it ever stops working, an
+          // opaque canvas would composite as a black rectangle over the CSS
+          // field instead of simply revealing it.
+          alpha: true,
+          antialias: false,
+          depth: false,
+          stencil: false,
+          powerPreference: "low-power",
+        }) as WebGLRenderingContext | null;
+      } catch {
+        setLive(false);
         return;
       }
-
-      if (!isVisible || !isIntersecting) {
-        animationFrameId = requestAnimationFrame(render);
+      if (!gl || gl.isContextLost()) {
+        setLive(false);
         return;
       }
+      const ctx = gl;
 
-      const elapsed = now - lastDrawTime;
-      if (elapsed >= targetFpsInterval) {
-        lastDrawTime = now - (elapsed % targetFpsInterval);
-        const timeSec = (now - startTime) / 1000;
-        if (gl) {
-          gl.uniform1f(timeLoc, timeSec);
-          gl.drawArrays(gl.TRIANGLES, 0, 6);
+      const fallback = () => setLive(false);
+
+      const compile = (type: number, source: string) => {
+        const shader = ctx.createShader(type);
+        if (!shader) return null;
+        ctx.shaderSource(shader, source);
+        ctx.compileShader(shader);
+        if (!ctx.getShaderParameter(shader, ctx.COMPILE_STATUS)) {
+          ctx.deleteShader(shader);
+          return null;
         }
-      }
+        return shader;
+      };
 
-      animationFrameId = requestAnimationFrame(render);
+      const vs = compile(ctx.VERTEX_SHADER, VS_SOURCE);
+      const fs = compile(ctx.FRAGMENT_SHADER, FS_SOURCE);
+      const program = vs && fs ? ctx.createProgram() : null;
+      if (!vs || !fs || !program) return fallback();
+
+      ctx.attachShader(program, vs);
+      ctx.attachShader(program, fs);
+      ctx.linkProgram(program);
+      if (!ctx.getProgramParameter(program, ctx.LINK_STATUS)) return fallback();
+      ctx.useProgram(program);
+
+      const buffer = ctx.createBuffer();
+      ctx.bindBuffer(ctx.ARRAY_BUFFER, buffer);
+      ctx.bufferData(
+        ctx.ARRAY_BUFFER,
+        new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+        ctx.STATIC_DRAW
+      );
+      const positionLocation = ctx.getAttribLocation(program, "a_position");
+      ctx.enableVertexAttribArray(positionLocation);
+      ctx.vertexAttribPointer(positionLocation, 2, ctx.FLOAT, false, 0, 0);
+
+      const resLoc = ctx.getUniformLocation(program, "u_resolution");
+      const timeLoc = ctx.getUniformLocation(program, "u_time");
+      ctx.uniform1f(ctx.getUniformLocation(program, "u_hue"), 189.0);
+      ctx.uniform1f(ctx.getUniformLocation(program, "u_density"), 3.4);
+      ctx.uniform1f(ctx.getUniformLocation(program, "u_speed"), 0.55);
+      ctx.uniform1f(ctx.getUniformLocation(program, "u_grain"), 1.0);
+
+      const draw = (seconds: number) => {
+        ctx.uniform1f(timeLoc, seconds);
+        ctx.drawArrays(ctx.TRIANGLES, 0, 6);
+      };
+
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let frame = 0;
+      let visible = !document.hidden;
+      const origin = performance.now();
+      let lastDraw = 0;
+      // Ambience, not animation. 30fps is indistinguishable here and cheaper.
+      const interval = 1000 / 30;
+
+      /**
+       * Resizing the canvas and uploading u_resolution are deliberately not
+       * conditional on each other. The uniform belongs to the program, so a
+       * freshly built program needs it even when the canvas is untouched —
+       * skipping it leaves u_resolution at (0,0) and the shader divides by
+       * zero into NaN, which clamps to black over the whole viewport.
+       */
+      const syncResolution = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const width = Math.floor(window.innerWidth * dpr);
+        const height = Math.floor(window.innerHeight * dpr);
+        const resized = canvas.width !== width || canvas.height !== height;
+        if (resized) {
+          canvas.width = width;
+          canvas.height = height;
+        }
+        ctx.viewport(0, 0, width, height);
+        ctx.uniform2f(resLoc, width, height);
+        return resized;
+      };
+
+      const resize = () => {
+        // A resized buffer is cleared, so a still field has to be repainted.
+        if (syncResolution() && reduced.matches) draw(0);
+      };
+
+      const loop = (now: number) => {
+        frame = requestAnimationFrame(loop);
+        if (!visible) return;
+        const elapsed = now - lastDraw;
+        if (elapsed < interval) return;
+        lastDraw = now - (elapsed % interval);
+        draw((now - origin) / 1000);
+      };
+
+      const applyMotionPreference = () => {
+        cancelAnimationFrame(frame);
+        if (reduced.matches) {
+          draw(0); // one frame, then stop
+        } else {
+          lastDraw = 0;
+          frame = requestAnimationFrame(loop);
+        }
+      };
+
+      const onVisibility = () => {
+        visible = !document.hidden;
+      };
+
+      syncResolution();
+      // Paint before revealing the canvas, so it never fades in blank.
+      draw(0);
+      applyMotionPreference();
+
+      window.addEventListener("resize", resize);
+      document.addEventListener("visibilitychange", onVisibility);
+      reduced.addEventListener("change", applyMotionPreference);
+
+      setLive(true);
+
+      teardown = () => {
+        cancelAnimationFrame(frame);
+        window.removeEventListener("resize", resize);
+        document.removeEventListener("visibilitychange", onVisibility);
+        reduced.removeEventListener("change", applyMotionPreference);
+        // Only our own objects. Never loseContext() — the context has to
+        // survive for a remount or a restore to rebuild on top of it.
+        ctx.deleteProgram(program);
+        ctx.deleteShader(vs);
+        ctx.deleteShader(fs);
+        ctx.deleteBuffer(buffer);
+      };
     };
 
-    if (prefersReducedMotion.matches) {
-      if (gl) {
-        gl.uniform1f(timeLoc, 0.0);
-        gl.drawArrays(gl.TRIANGLES, 0, 6);
-      }
-    } else {
-      animationFrameId = requestAnimationFrame(render);
-    }
-
-    const onVisibilityChange = () => {
-      isVisible = !document.hidden;
+    // A lost context paints nothing, so hand back to the CSS field until the
+    // browser offers it again.
+    const onContextLost = (event: Event) => {
+      event.preventDefault();
+      teardown?.();
+      teardown = null;
+      setLive(false);
     };
-    document.addEventListener("visibilitychange", onVisibilityChange);
+    const onContextRestored = () => start();
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        isIntersecting = entry.isIntersecting;
-      });
-    });
-    observer.observe(canvas);
+    canvas.addEventListener("webglcontextlost", onContextLost);
+    canvas.addEventListener("webglcontextrestored", onContextRestored);
+    start();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resize);
-      document.removeEventListener("visibilitychange", onVisibilityChange);
-      observer.disconnect();
+      disposed = true;
+      canvas.removeEventListener("webglcontextlost", onContextLost);
+      canvas.removeEventListener("webglcontextrestored", onContextRestored);
+      teardown?.();
+      teardown = null;
+      setLive(false);
     };
   }, []);
 
   return (
-    <>
+    <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none bg-[#0a0b0d]">
+      {/* Always painted. The canvas covers it when WebGL is available, so a
+          blocked context — or no JS at all — still gets a field, never flat
+          black. */}
+      <div className="absolute inset-0" style={{ background: CSS_FIELD, filter: "blur(40px)" }} />
+      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: GRAIN }} />
+
       <canvas
         ref={canvasRef}
-        aria-hidden="true"
-        className="fixed inset-0 w-full h-full pointer-events-none z-0"
-        style={{
-          background: "var(--ground)",
-        }}
+        className="absolute inset-0 w-full h-full transition-opacity duration-700"
+        style={{ opacity: live ? 1 : 0 }}
       />
-      <div
-        ref={fallbackRef}
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 bg-[#0a0b0d] overflow-hidden"
-        style={{ display: "none" }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(60% 50% at 38% 28%, #15303a 0%, transparent 70%),
-              radial-gradient(50% 40% at 72% 68%, #122a33 0%, transparent 75%),
-              radial-gradient(80% 70% at 50% 50%, #0d1519 0%, var(--ground) 100%)
-            `,
-            filter: "blur(40px)",
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
-    </>
+    </div>
   );
 }
