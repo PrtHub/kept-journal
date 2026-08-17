@@ -18,7 +18,7 @@ export default function SupportPage() {
 
       <main id="main-content" className="relative z-10 pt-32 pb-24 flex-1">
         <div className="max-w-270 mx-auto px-6">
-          <div className="prose-container">
+          <div className="prose-container w-full mx-auto">
             <Link
               href="/"
               className="text-meta text-[#7ac4d1] inline-flex items-center gap-1.5 mb-8 hover:underline"
