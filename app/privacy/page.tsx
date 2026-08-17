@@ -72,8 +72,8 @@ export default function PrivacyPage() {
                 <h2 className="text-question text-(--ink)">1. Who we are</h2>
                 <p>
                   Kept is developed and operated by Kept (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;). For privacy inquiries, data protection questions, or requests regarding this policy, contact us at{" "}
-                  <a href="mailto:privacy@kept.app" className="secondary-link">
-                    privacy@kept.app
+                  <a href="mailto:pritamfinds@gmail.com" className="secondary-link">
+                    pritamfinds@gmail.com
                   </a>
                   .
                 </p>

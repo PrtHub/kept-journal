@@ -53,10 +53,10 @@ export default function SupportPage() {
               <p>
                 For bug reports, technical inquiries, or assistance, reach us at{" "}
                 <a
-                  href="mailto:support@kept.app"
+                  href="mailto:pritamfinds@gmail.com"
                   className="secondary-link text-[#7ac4d1]"
                 >
-                  support@kept.app
+                  pritamfinds@gmail.com
                 </a>
                 .
               </p>
