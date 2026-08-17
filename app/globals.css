@@ -1,26 +1,243 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Ground and surfaces */
+  --ground: #0a0b0d; /* page background */
+  --plane: #12141a; /* raised card */
+  --raise: #171a20; /* card on card, input fields */
+  --hairline: #242830; /* 1px borders, dividers */
+
+  /* Ink */
+  --ink: #f4f4f1; /* headings, primary text */
+  --ink-2: #9aa0a6; /* body prose */
+  --ink-3: #6b7178; /* labels, captions, meta */
+
+  /* Accent — one only. Called "Ice". 10.02:1 on --ground */
+  --accent: #7ac4d1;
+  --accent-dim: #8fd0da; /* interior fills at low opacity */
+
+  /* Spacing scale — use only these */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 72px;
+  --s9: 112px;
+
+  /* Radius */
+  --r-inner: 14px; /* cards */
+  --r-pill: 999px; /* buttons */
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fast: 220ms;
+  --base: 420ms;
+  --slow: 680ms;
+
+  /* Font mappings */
+  --font-geist: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Explicit dark background on html & body */
+html,
+body {
+  background-color: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-geist);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Typography styles matching spec */
+.text-hero {
+  font-family: var(--font-geist);
+  font-size: 56px;
+  line-height: 60px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+@media (max-width: 768px) {
+  .text-hero {
+    font-size: 38px;
+    line-height: 42px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.text-display {
+  font-family: var(--font-geist);
+  font-size: 40px;
+  line-height: 46px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+@media (max-width: 768px) {
+  .text-display {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.text-question {
+  font-family: var(--font-geist);
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+@media (max-width: 768px) {
+  .text-question {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+
+.text-lead {
+  font-family: var(--font-geist);
+  font-size: 21px;
+  line-height: 32px;
+  font-weight: 400;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+
+.text-prose {
+  font-family: var(--font-geist);
+  font-size: 17px;
+  line-height: 26px;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+
+.text-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.text-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+}
+
+/* Prose container constraint */
+.prose-container {
+  max-width: 62ch;
+}
+
+/* Section vertical rhythm */
+.section-spacing {
+  padding-block: var(--s9);
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding-block: var(--s8);
+  }
+}
+
+/* Base interactive focus */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Text links */
+.secondary-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(122, 196, 209, 0.35);
+  transition: border-color var(--fast) var(--ease), color var(--fast) var(--ease);
+}
+
+.secondary-link:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Card utility */
+.card-plane {
+  background: var(--plane);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-inner);
+  padding: var(--s6);
+}
+
+@media (max-width: 560px) {
+  .card-plane {
+    padding: var(--s4);
+  }
+}
+
+/* Native FAQ accordion details styling */
+details.faq-item {
+  border-bottom: 1px solid var(--hairline);
+  padding-block: var(--s5);
+}
+
+details.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq-item .faq-indicator {
+  transition: transform var(--fast) var(--ease);
+  color: var(--ink-3);
+}
+
+details.faq-item[open] .faq-indicator {
+  transform: rotate(45deg);
+  color: var(--ink);
+}
+
+/* Respect reduced transparency & motion */
+@media (prefers-reduced-transparency: reduce) {
+  .nav-blur {
+    backdrop-filter: none !important;
+    background: #0a0b0d !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
