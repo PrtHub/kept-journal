@@ -4,7 +4,7 @@ import Reveal from "@/components/common/Reveal";
 export default function ProblemSection() {
   return (
     <section className="section-spacing">
-      <div className="max-w-270 mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <Reveal className="prose-container">
           <SectionLabel>WHY THIS IS DIFFERENT</SectionLabel>
 

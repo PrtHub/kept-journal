@@ -328,8 +328,269 @@ export const USE_CASES: UseCaseItem[] = [
       },
     ],
   },
+  {
+    slug: "anxiety-and-overthinking",
+    title: "Anxiety & Overthinking",
+    subtitle: "Unload racing thoughts and inspect recurring words",
+    metaTitle: "Journal for Anxiety & Overthinking — Evidence-Based (Kept)",
+    metaDescription:
+      "A private iPhone journal for anxiety and overthinking. Unload racing thoughts without algorithmic interruptions and inspect recurring themes.",
+    headline: "Unload racing thoughts and examine the evidence",
+    lead: "When anxiety turns minor possibilities into certain catastrophes, writing forces thoughts onto a tangible plane where evidence can be evaluated privately.",
+    theProblem:
+      "Overthinking loops gain momentum late at night. Digital apps that ping with notifications, require questionnaire steps, or offer conversational AI chatbot commentary often heighten cognitive stimulation instead of easing it.",
+    howKeptWorks:
+      "Kept opens directly into a quiet full-screen editor with soothing Nocturne dark styling. Monospace word counts fade on idle so you can write without judgment. The Insights tab tracks recurring words across entries so you can inspect thought loops objectively over time.",
+    steps: [
+      {
+        step: "1",
+        title: "Dump racing thoughts immediately",
+        description:
+          "Open Kept to today's date and write whatever is in your head without formatting or self-editing.",
+      },
+      {
+        step: "2",
+        title: "Inspect recurring terms",
+        description:
+          "Open Insights to see which words appear frequently and tap any observation to review the source entries.",
+      },
+      {
+        step: "3",
+        title: "Get your summary on demand",
+        description:
+          "Generate a one-page summary that compiles counted facts and extracts exact sentences for your review.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Zero Machine Interruptions",
+        detail:
+          "Prompt-free capture with no chatbot commentary or push notifications interrupting your flow.",
+      },
+      {
+        title: "Objective Historical Anchor",
+        detail:
+          "Evaluate anxious predictions against dated historical entries and verifiable evidence.",
+      },
+    ],
+    faq: [
+      {
+        q: "Does Kept offer medical or psychological advice?",
+        a: "No. Kept provides an encrypted writing space to record and organise what you wrote.",
+      },
+    ],
+  },
+  {
+    slug: "grief-and-life-transitions",
+    title: "Grief & Life Transitions",
+    subtitle: "Quiet reflection that never grades consistency",
+    metaTitle: "Journal for Grief & Life Transitions — Quiet & Private (Kept)",
+    metaDescription:
+      "A private journal for navigating grief and major life transitions. 5-photo onboarding, local encryption, and zero streak pressure.",
+    headline: "A private space for navigating life transitions",
+    lead: "During grief or major life changes, daily routine requirements feel overwhelming. Kept offers a quiet, unpressured space that holds memories without demanding daily streaks.",
+    theProblem:
+      "Most journaling apps assume a cheerful, linear habit and penalize missed days with broken streaks or 'you are falling behind' notifications, creating guilt during emotionally exhausting seasons.",
+    howKeptWorks:
+      "Kept has no streak counters, no daily scoreboards, and no guilt. You can seed a year of memories using five photos from your library, write when you feel able, and generate structured summaries only when you want to reflect.",
+    steps: [
+      {
+        step: "1",
+        title: "Anchor with photographs",
+        description:
+          "Select five meaningful photos from your camera roll to establish dated entries across your timeline.",
+      },
+      {
+        step: "2",
+        title: "Write whenever you are ready",
+        description:
+          "Record short memories or long reflections without any obligation to write on consecutive days.",
+      },
+      {
+        step: "3",
+        title: "Review through Echo",
+        description:
+          "Quietly revisit what you wrote a year ago today through the Echo card on the Today view.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Zero Streak Guilt",
+        detail:
+          "Write once a month or several times a week without penalties, score resets, or patronizing copy.",
+      },
+      {
+        title: "Absolute Confidentiality",
+        detail:
+          "Your memories and photographs remain encrypted in local storage on your iPhone.",
+      },
+    ],
+    faq: [
+      {
+        q: "Can I keep photos attached to my entries permanently?",
+        a: "Yes. Photos remain in your app's sandboxed container and are included in your passphrase-encrypted backups.",
+      },
+    ],
+  },
+  {
+    slug: "executive-and-founder-reflection",
+    title: "Executive & Founder Reflection",
+    subtitle: "Turn weekly operational chaos into strategic clarity",
+    metaTitle: "Executive & Founder Journal — Weekly Strategy & Reflection (Kept)",
+    metaDescription:
+      "A private journal for founders and executives. Record confidential work reflections and compile them into a weekly one-page strategic digest.",
+    headline: "Turn scattered weekly notes into a one-page strategic review",
+    lead: "Leading teams requires maintaining strategic perspective amid daily operational fires. Kept turns your end-of-day notes into a concise one-page Sunday reflection.",
+    theProblem:
+      "Executives record scattered thoughts across notes apps, Slack drafts, and paper notebooks, but rarely have time to consolidate them before weekly planning sessions.",
+    howKeptWorks:
+      "Jot down two sentences at the end of each workday. On Sunday, Kept prepares a one-page summary highlighting your counted active days, recurring discussion topics, and verbatim quotes.",
+    steps: [
+      {
+        step: "1",
+        title: "Log rapid end-of-day notes",
+        description:
+          "Type brief observations about key decisions, team dynamics, or operational bottlenecks.",
+      },
+      {
+        step: "2",
+        title: "Review your Sunday strategic digest",
+        description:
+          "Read a single page synthesizing your week's counted metrics and exact quoted sentences.",
+      },
+      {
+        step: "3",
+        title: "Set focused weekly priorities",
+        description:
+          "Start Monday morning aligned on the core priorities identified from your review.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Corporate Network Isolation",
+        detail:
+          "Kept operates 100% offline with on-device SQLCipher encryption, isolated from employer IT networks and cloud logs.",
+      },
+      {
+        title: "5-Minute Sunday Synthesis",
+        detail:
+          "Review a single clean page instead of sifting through messy disjointed notes.",
+      },
+    ],
+    faq: [
+      {
+        q: "Can I export my weekly review as Markdown?",
+        a: "Yes. You can export summaries and entries as plain Markdown via the iOS share sheet.",
+      },
+    ],
+  },
+  {
+    slug: "relationship-and-couples-check-ins",
+    title: "Relationship & Couples Check-Ins",
+    subtitle: "Prepare honest reflections before relationship conversations",
+    metaTitle: "Journal for Relationship Reflection & Couples Check-Ins (Kept)",
+    metaDescription:
+      "A private iPhone journal for relationship reflection. Ground monthly check-ins and couples therapy in dated observations and exact quotes.",
+    headline: "Ground relationship conversations in honest, private reflection",
+    lead: "Important relationship check-ins go better when grounded in thoughtful reflection rather than heat-of-the-moment reactions. Kept gives you a private space to clarify your thoughts.",
+    theProblem:
+      "When discussing recurring relationship challenges, partners often generalize ('you always', 'we never') because specific moments from two weeks ago are difficult to recall accurately.",
+    howKeptWorks:
+      "Record moments of gratitude, boundary questions, and emotional reactions as they happen. Before a check-in or couples counseling session, review your exact words to speak with specificity and care.",
+    steps: [
+      {
+        step: "1",
+        title: "Record private observations",
+        description:
+          "Write freely about relationship dynamics in a secure journal protected by Face ID.",
+      },
+      {
+        step: "2",
+        title: "Synthesize recurring themes",
+        description:
+          "Generate a periodic summary to see what topics have come up frequently over the past month.",
+      },
+      {
+        step: "3",
+        title: "Communicate with clarity",
+        description:
+          "Bring grounded, specific reflections to your partner conversation without defensive generalizations.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Biometric Face ID Privacy",
+        detail:
+          "Face ID locking ensures your intimate personal reflections remain strictly private on your personal device.",
+      },
+      {
+        title: "Replaces Generalizations with Facts",
+        detail:
+          "Dated entries help identify real patterns rather than exaggerated emotional reactions.",
+      },
+    ],
+    faq: [
+      {
+        q: "Is Kept a shared journal for couples?",
+        a: "No. Kept is strictly an individual, private journal designed for personal self-reflection before conversations.",
+      },
+    ],
+  },
+  {
+    slug: "creative-free-writing",
+    title: "Creative Free-Writing & Flow",
+    subtitle: "Distraction-free capture with monospace metrics",
+    metaTitle: "Creative Free-Writing Journal for iPhone — No Distractions (Kept)",
+    metaDescription:
+      "A distraction-free writing journal for creative writers and thinkers. Full-screen dark mode, monospace word count, and zero algorithmic suggestions.",
+    headline: "A quiet digital page for uninterrupted creative flow",
+    lead: "Modern writing apps clutter the screen with toolbars, AI suggestions, and menus. Kept strips away the chrome so you can focus entirely on the sentence in front of you.",
+    theProblem:
+      "Writing apps filled with formatting ribbons, floating buttons, and auto-complete suggestions interrupt the delicate state of creative flow and encourage premature editing.",
+    howKeptWorks:
+      "Kept provides an edge-to-edge full-screen editor in Nocturne dark mode. The ambient shader freezes during typing to conserve focus, monospace word counts fade on idle, and the entry glyph draws stroke-by-stroke upon completion.",
+    steps: [
+      {
+        step: "1",
+        title: "Tap to write instantly",
+        description:
+          "Open the app and begin typing immediately with zero folder navigation or template selection.",
+      },
+      {
+        step: "2",
+        title: "Write in pure full-screen mode",
+        description:
+          "Enjoy a clean visual environment where distractions, toolbars, and prompts are completely absent.",
+      },
+      {
+        step: "3",
+        title: "Export plain Markdown",
+        description:
+          "Export your prose into standard Markdown files for your creative manuscript or archive.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Zero Visual Clutter",
+        detail:
+          "No toolbars, ribbons, or AI auto-complete suggestions while you are writing.",
+      },
+      {
+        title: "Tactile Glyph Feedback",
+        detail:
+          "Each completed entry renders a unique vector glyph with haptic feedback as the curve closes.",
+      },
+    ],
+    faq: [
+      {
+        q: "Can I write long-form entries in Kept?",
+        a: "Yes. There are no word limits. You can write short two-line observations or multi-thousand-word essays.",
+      },
+    ],
+  },
 ];
 
 export function getUseCaseBySlug(slug: string): UseCaseItem | undefined {
   return USE_CASES.find((u) => u.slug === slug);
 }
+

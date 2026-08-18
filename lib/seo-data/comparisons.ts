@@ -434,8 +434,339 @@ export const COMPARISONS: ComparisonItem[] = [
       },
     ],
   },
+  {
+    slug: "daylio",
+    competitorName: "Daylio",
+    competitorType: "Micro-mood icon tracker",
+    metaTitle: "Kept vs Daylio — Reflective Journaling vs Icon Tracking (2026)",
+    metaDescription:
+      "Compare Kept and Daylio. Discover why long-form private writing and one-page summaries provide deeper therapeutic value than tapping mood icons.",
+    headline: "Kept vs Daylio: In-depth reflection vs micro-mood tracking",
+    lead:
+      "Daylio tracks daily moods through icon buttons and activity tags. Kept is a private writing journal that lets you record real context and delivers a structured one-page summary on request.",
+    overview:
+      "Icon trackers are designed for five-second check-ins. While convenient, clicking icons cannot capture the nuances of work struggles, relationships, or therapy themes. Kept provides fluid text capture with on-device encryption and periodic review sheets.",
+    verdict:
+      "If you only want to log quick mood ratings and activity tags in five seconds, Daylio is an efficient tracker. If you want to write freely, notice recurring words, and receive a structured one-page summary before your therapy session, Kept provides the writing space.",
+    differences: [
+      {
+        feature: "Depth of Context",
+        kept: "Fluid, full-screen writing with optional mood ratings after writing and attached photos.",
+        competitor: "Tapping mood icons with optional short note fields.",
+        whyItMatters:
+          "Meaningful reflection requires capturing the actual narrative behind your emotions.",
+      },
+      {
+        feature: "Summary Deliverable",
+        kept: "One-page summary of counted figures, exact quotes, and three reflection questions.",
+        competitor: "Aggregated monthly mood graphs and activity correlation percentages.",
+        whyItMatters:
+          "A structured page of quotes and facts is far more actionable for therapy than abstract graph lines.",
+      },
+      {
+        feature: "Privacy & Encryption",
+        kept: "On-device SQLCipher AES-256 with keys in the iOS Keychain. Zero remote accounts.",
+        competitor: "Cloud backup and account sync.",
+        whyItMatters:
+          "Your personal thoughts should stay locked on your device without remote profile tracking.",
+      },
+    ],
+    tableMatrix: [
+      {
+        dimension: "Primary Focus",
+        kept: "Reflective long-form writing",
+        competitor: "Micro-mood icon logging",
+      },
+      {
+        dimension: "Summary Deliverable",
+        kept: "One-page structured sheet with quotes",
+        competitor: "Statistical mood charts",
+      },
+      {
+        dimension: "Database Encryption",
+        kept: "SQLCipher (AES-256) on device",
+        competitor: "Standard app storage / cloud backup",
+      },
+      {
+        dimension: "Account Requirement",
+        kept: "None (zero accounts)",
+        competitor: "Optional cloud account",
+      },
+    ],
+    faq: [
+      {
+        q: "Can I still track my mood in Kept?",
+        a: "Yes. Kept asks for an optional mood rating after you write, never before, and displays mood-by-topic contrast in the Insights tab.",
+      },
+    ],
+  },
+  {
+    slug: "reflectly",
+    competitorName: "Reflectly",
+    competitorType: "AI mood check-in app",
+    metaTitle: "Kept vs Reflectly — Prompt-Free Writing vs AI Questionnaires (2026)",
+    metaDescription:
+      "Compare Kept and Reflectly. Learn the difference between quiet, local-first journaling and algorithmic sentiment questionnaires.",
+    headline: "Kept vs Reflectly: Prompt-free writing vs algorithmic questionnaires",
+    lead:
+      "Reflectly uses algorithmic questionnaires and sentiment scores to guide your day. Kept provides a quiet, prompt-free page that stores writing locally and writes you a one-page summary on request.",
+    overview:
+      "Reflectly asks structured daily check-in questions and calculates algorithmic happiness scores. Kept avoids mood scoreboards and questionnaires: you open the app to write freely, your words stay encrypted locally, and you get a structured page when you ask for one.",
+    verdict:
+      "If you want daily guided questionnaires and automated mood graphs, Reflectly offers a structured workflow. If you want a quiet private notebook that leaves you alone while writing and delivers a factual one-page summary for sessions, Kept is built for you.",
+    differences: [
+      {
+        feature: "Writing Flow",
+        kept: "Prompt-free by default. Write what is on your mind without questionnaire gates.",
+        competitor: "Multi-step check-in questionnaire asking how your day was before writing.",
+        whyItMatters:
+          "Writing without pre-set questions allows your own thoughts to emerge naturally.",
+      },
+      {
+        feature: "Synthesis vs Scoring",
+        kept: "Counted facts, verbatim quotes, and three reflection questions on request.",
+        competitor: "Algorithmic happiness metrics and sentiment analysis graphs.",
+        whyItMatters:
+          "Factual evidence from your own words is more grounded than machine-generated sentiment numbers.",
+      },
+      {
+        feature: "Data Architecture",
+        kept: "Local SQLCipher encryption with keys in the iOS Keychain. Zero user accounts.",
+        competitor: "Cloud account database storing user profiles.",
+        whyItMatters:
+          "Local storage ensures your journal is protected against server-side breaches.",
+      },
+    ],
+    tableMatrix: [
+      {
+        dimension: "Interaction Style",
+        kept: "Quiet writing with optional reroll prompts",
+        competitor: "Guided daily check-in questions",
+      },
+      {
+        dimension: "Feedback Model",
+        kept: "Factual one-page summary on request",
+        competitor: "Daily AI sentiment scores",
+      },
+      {
+        dimension: "Storage Model",
+        kept: "100% on-device SQLCipher",
+        competitor: "Cloud server database",
+      },
+      {
+        dimension: "User Account",
+        kept: "None",
+        competitor: "Mandatory account",
+      },
+    ],
+    faq: [
+      {
+        q: "Does Kept calculate a happiness score?",
+        a: "No. Kept does not score your emotions or grade your writing.",
+      },
+    ],
+  },
+  {
+    slug: "finch",
+    competitorName: "Finch",
+    competitorType: "Gamified self-care pet app",
+    metaTitle: "Kept vs Finch — Calm Adult Reflection vs Gamified Self-Care (2026)",
+    metaDescription:
+      "A comparison of Kept and Finch. Explore the difference between calm, unhedged journaling and gamified virtual pet routines.",
+    headline: "Kept vs Finch: Calm adult reflection vs virtual pet gamification",
+    lead:
+      "Finch uses a virtual pet and reward coins to encourage daily self-care tasks. Kept is a calm, unhedged journal with no avatars, no points, no streaks, and a one-page summary on request.",
+    overview:
+      "Gamified apps use rewards and character progression to drive engagement. Kept is designed for adults who want a quiet, respectful tool: you write when something happens, the app measures your pledge without grading, and your notes stay encrypted on your phone.",
+    verdict:
+      "If you find virtual pet rewards and gamified task checklists motivating, Finch is a popular self-care app. If you want a private, distraction-free journal for therapy and personal review that treats you as an adult, Kept provides the quiet page.",
+    differences: [
+      {
+        feature: "Gamification & Rewards",
+        kept: "Zero gamification. No virtual pets, no coins, no scoreboards, and no avatars.",
+        competitor: "Virtual pet care, daily adventure rewards, and clothing customization.",
+        whyItMatters:
+          "Journals should provide a calm mirror for your thoughts rather than a gamified routine.",
+      },
+      {
+        feature: "Tone & Interface",
+        kept: "Nocturne dark mode with ambient shaders and refined typography.",
+        competitor: "Colorful cartoon graphics with game audio effects.",
+        whyItMatters:
+          "A quiet aesthetic encourages honest, serious emotional reflection.",
+      },
+      {
+        feature: "Summary Output",
+        kept: "One-page summary of counted figures, exact quotes, and reflection questions.",
+        competitor: "Self-care achievement logs and item unlocks.",
+        whyItMatters:
+          "Synthesized text sheets give you actionable notes to bring to therapy sessions.",
+      },
+    ],
+    tableMatrix: [
+      {
+        dimension: "Accountability Model",
+        kept: "Measured pledge (No points or guilt)",
+        competitor: "Pet energy & quest completion",
+      },
+      {
+        dimension: "Aesthetic",
+        kept: "Nocturne minimal dark palette",
+        competitor: "Cartoon gamified interface",
+      },
+      {
+        dimension: "Summary Deliverable",
+        kept: "Structured one-page text summary",
+        competitor: "Activity logs & achievements",
+      },
+      {
+        dimension: "Privacy",
+        kept: "Local SQLCipher encryption",
+        competitor: "Cloud account sync",
+      },
+    ],
+    faq: [
+      {
+        q: "Is Kept suitable for therapy preparation?",
+        a: "Yes. Kept was specifically designed to help therapy clients capture notes between sessions and prepare a clean summary.",
+      },
+    ],
+  },
+  {
+    slug: "obsidian",
+    competitorName: "Obsidian",
+    competitorType: "Markdown knowledge graph",
+    metaTitle: "Kept vs Obsidian for Journaling — Dedicated App vs Graph Setup (2026)",
+    metaDescription:
+      "Compare Kept and Obsidian for daily journaling. See why a dedicated local iPhone journal outperforms complex markdown vault setups.",
+    headline: "Kept vs Obsidian: Dedicated iPhone reflection vs markdown vault setup",
+    lead:
+      "Obsidian is a powerful knowledge base with graph views and infinite plugins. Kept is a dedicated private iPhone journal that requires zero configuration and writes you a one-page summary on request.",
+    overview:
+      "Setting up a daily journal in Obsidian requires configuring vaults, daily notes plugins, template formats, and sync tools. Kept requires zero setup: it opens instantly to today's date, protects your database with Keychain encryption, and automatically compiles periodic review pages.",
+    verdict:
+      "If you want an interconnected personal wiki and research vault on desktop, Obsidian is an exceptional tool. If you want a private iPhone journal for therapy and daily reflection that works immediately with zero configuration, Kept provides the focused space.",
+    differences: [
+      {
+        feature: "Mobile Experience & Speed",
+        kept: "Native iOS app with instant startup, smooth keyboard handling, and ambient shader visuals.",
+        competitor: "Cross-platform mobile wrapper requiring vault loading and plugin indexing.",
+        whyItMatters:
+          "Lower startup friction ensures you record thoughts in the moment before they fade.",
+      },
+      {
+        feature: "Summary Automation",
+        kept: "Generates structured one-page summaries with counted facts and extracted quotes on request.",
+        competitor: "Requires manual review or configuring third-party community AI plugins.",
+        whyItMatters:
+          "Built-in synthesis provides a clean deliverable without technical plugin maintenance.",
+      },
+      {
+        feature: "On-Device Security",
+        kept: "SQLCipher database encrypted with hardware keys in the iOS Keychain and Face ID locking.",
+        competitor: "Plain text files stored in the local file system unencrypted at rest.",
+        whyItMatters:
+          "Database encryption prevents unauthorized access if someone inspects local device files.",
+      },
+    ],
+    tableMatrix: [
+      {
+        dimension: "Setup Required",
+        kept: "Zero (Ready on install)",
+        competitor: "Vault, templates, and plugin configuration",
+      },
+      {
+        dimension: "Database Encryption",
+        kept: "SQLCipher AES-256 + Keychain",
+        competitor: "Plain text files in filesystem",
+      },
+      {
+        dimension: "One-Page Summaries",
+        kept: "Built-in structured synthesis on request",
+        competitor: "Manual note compilation",
+      },
+      {
+        dimension: "Export Portability",
+        kept: "Standard Markdown export & encrypted backup",
+        competitor: "Local Markdown files",
+      },
+    ],
+    faq: [
+      {
+        q: "Can I export my Kept journal into my Obsidian vault?",
+        a: "Yes. Kept exports clean Markdown (.md) files that integrate seamlessly into any Obsidian vault.",
+      },
+    ],
+  },
+  {
+    slug: "journey",
+    competitorName: "Journey",
+    competitorType: "Cross-platform cloud journal",
+    metaTitle: "Kept vs Journey — Local-First Encryption vs Cloud Storage (2026)",
+    metaDescription:
+      "Compare Kept and Journey. Explore the difference between on-device SQLCipher encryption and third-party cloud drive synchronization.",
+    headline: "Kept vs Journey: Local-first security vs cloud synchronization",
+    lead:
+      "Journey synchronizes entries across platforms using Google Drive and cloud servers. Kept keeps your writing strictly on your iPhone with local SQLCipher encryption and zero remote accounts.",
+    overview:
+      "Journey is built for multi-device sync across Android, web, Windows, and iOS. Kept is engineered for iPhone users who prioritize absolute privacy: your writing never lives on a third-party cloud drive, and you get a structured one-page summary on request.",
+    verdict:
+      "If you need to access your journal across Android, web, and desktop via Google Drive sync, Journey is a versatile cross-platform tool. If you want an encrypted iPhone journal with zero cloud dependencies that writes you a one-page summary, Kept provides the private space.",
+    differences: [
+      {
+        feature: "Storage Architecture",
+        kept: "SQLCipher (AES-256) on iPhone only. Keys stored in the secure iOS Keychain.",
+        competitor: "Synchronized with Google Drive or Journey Cloud servers.",
+        whyItMatters:
+          "Keeping entries local ensures your journal is completely isolated from cloud drive vulnerabilities.",
+      },
+      {
+        feature: "Periodic Summaries",
+        kept: "Structured one-page summary with counted metrics, quotes, and reflection questions.",
+        competitor: "Timeline flashbacks, calendar view, and coach programs.",
+        whyItMatters:
+          "Summaries synthesize weeks of notes into a clean deliverable for therapy appointments.",
+      },
+      {
+        feature: "Day-One Onboarding",
+        kept: "5-photo library backfill creates a year of context in twenty minutes.",
+        competitor: "Starts as an empty feed requiring daily entries.",
+        whyItMatters:
+          "Photo backfill solves blank timeline fatigue immediately.",
+      },
+    ],
+    tableMatrix: [
+      {
+        dimension: "Primary Storage",
+        kept: "Encrypted SQLite on iPhone",
+        competitor: "Google Drive / Journey Cloud",
+      },
+      {
+        dimension: "Account Model",
+        kept: "Zero accounts",
+        competitor: "Mandatory Google/Apple login",
+      },
+      {
+        dimension: "Summary Deliverable",
+        kept: "Counted facts, verbatim quotes, reflection questions",
+        competitor: "Timeline search and flashbacks",
+      },
+      {
+        dimension: "Writing Access",
+        kept: "Free forever (Only summary is paid)",
+        competitor: "Subscription required for full features",
+      },
+    ],
+    faq: [
+      {
+        q: "Can I backup my Kept journal safely without cloud sync?",
+        a: "Yes. Kept includes encrypted backup export locked with a personal passphrase using scrypt and XChaCha20-Poly1305.",
+      },
+    ],
+  },
 ];
 
 export function getComparisonBySlug(slug: string): ComparisonItem | undefined {
   return COMPARISONS.find((c) => c.slug === slug);
 }
+

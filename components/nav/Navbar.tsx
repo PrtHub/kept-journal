@@ -38,7 +38,7 @@ export default function Navbar() {
             : "bg-transparent border-b border-transparent"
         }`}
       >
-        <div className="max-w-270 mx-auto h-full px-6 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto h-full px-6 flex items-center justify-between">
           <Link
             href="/"
             className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7ac4d1] focus-visible:ring-offset-2 rounded"

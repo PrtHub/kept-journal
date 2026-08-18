@@ -72,3 +72,65 @@ export interface FeatureItem {
     a: string;
   }[];
 }
+
+export interface PromptCollectionItem {
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  metaTitle: string;
+  metaDescription: string;
+  headline: string;
+  lead: string;
+  description: string;
+  prompts: {
+    question: string;
+    context: string;
+  }[];
+  howToUseInKept: string;
+  faq: {
+    q: string;
+    a: string;
+  }[];
+}
+
+export interface GuideItem {
+  slug: string;
+  title: string;
+  category: string;
+  readTime: string;
+  metaTitle: string;
+  metaDescription: string;
+  headline: string;
+  lead: string;
+  sections: {
+    heading: string;
+    body: string;
+  }[];
+  keyTakeaways: string[];
+  faq: {
+    q: string;
+    a: string;
+  }[];
+}
+
+export interface AlternativeItem {
+  slug: string;
+  targetApp: string;
+  targetType: string;
+  metaTitle: string;
+  metaDescription: string;
+  headline: string;
+  lead: string;
+  whyPeopleSwitch: string;
+  keyDifferences: {
+    title: string;
+    keptApproach: string;
+    targetApproach: string;
+  }[];
+  comparisonSummary: string;
+  faq: {
+    q: string;
+    a: string;
+  }[];
+}

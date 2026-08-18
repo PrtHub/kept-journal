@@ -5,7 +5,7 @@ import { FAQS } from "@/lib/faqs";
 export default function FaqSection() {
   return (
     <section className="section-spacing">
-      <div className="max-w-270 mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <Reveal className="prose-container mx-auto">
           <SectionLabel>FAQ</SectionLabel>
 

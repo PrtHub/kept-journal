@@ -31,7 +31,7 @@ const PRIVACY_FACTS = [
 export default function PrivacySection() {
   return (
     <section className="section-spacing">
-      <div className="max-w-270 mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <Reveal>
           {/* The heaviest block on the page: one plane card, hairline border,
               no shadow. Padding steps down so 320px isn't all gutter. */}

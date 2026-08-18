@@ -40,7 +40,7 @@ const PLANS: Plan[] = [
 export default function PricingSection() {
   return (
     <section className="section-spacing">
-      <div className="max-w-270 mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <Reveal className="text-center max-w-[62ch] mx-auto mb-14">
           <SectionLabel>PRICING</SectionLabel>
           <h2 className="text-display">

@@ -5,7 +5,7 @@ import InsightsScreenMockup from "./InsightsScreenMockup";
 export default function MemorySection() {
   return (
     <section className="section-spacing">
-      <div className="max-w-270 mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Visual left this time, alternating against Day One. */}
         <Reveal className="lg:col-span-6 flex justify-center lg:justify-start order-2 lg:order-1">
           <InsightsScreenMockup />

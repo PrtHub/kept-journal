@@ -5,23 +5,23 @@ import Footer from "@/components/footer/Footer";
 import AmbientField from "@/components/background/AmbientField";
 import SectionLabel from "@/components/common/SectionLabel";
 import PrimaryButton from "@/components/common/PrimaryButton";
-import { COMPARISONS } from "@/lib/seo-data";
+import { PROMPTS } from "@/lib/seo-data";
 import { SITE_URL } from "@/lib/config";
 
 export const metadata = {
-  title: "Journal App Comparisons — Kept vs Day One, Apple Journal & More",
+  title: "Journal Prompts & Reflection Question Bank — Kept",
   description:
-    "Factual comparisons between Kept and other journaling applications. Explore local SQLite encryption, one-page summaries, and pricing differences.",
-  alternates: { canonical: `${SITE_URL}/vs` },
+    "Explore curated journal prompts for therapy preparation, CBT thought records, anxiety overthinking, weekly reviews, and evening reflection.",
+  alternates: { canonical: `${SITE_URL}/prompts` },
   openGraph: {
-    title: "Journal App Comparisons — Kept vs Day One, Apple Journal & More",
+    title: "Journal Prompts & Reflection Question Bank — Kept",
     description:
-      "Factual comparisons between Kept and other journaling applications. Explore local SQLite encryption, one-page summaries, and pricing differences.",
-    url: `${SITE_URL}/vs`,
+      "Explore curated journal prompts for therapy preparation, CBT thought records, anxiety overthinking, weekly reviews, and evening reflection.",
+    url: `${SITE_URL}/prompts`,
   },
 };
 
-export default function ComparisonsIndexPage() {
+export default function PromptsIndexPage() {
   return (
     <div className="relative min-h-screen flex flex-col justify-between selection:bg-[#7ac4d1]/30 selection:text-(--ink)">
       <AmbientField />
@@ -37,37 +37,37 @@ export default function ComparisonsIndexPage() {
           </Link>
 
           <div className="max-w-3xl mb-12">
-            <SectionLabel>APP COMPARISONS</SectionLabel>
+            <SectionLabel>QUESTION BANK &amp; PROMPTS</SectionLabel>
             <h1 className="text-display mb-6 text-(--ink)">
-              How Kept compares to other journals
+              Curated prompts for honest reflection
             </h1>
 
             <p className="text-lead text-(--ink-2)">
-              Kept is built on a different architectural premise: your database lives encrypted on your iPhone with no remote account, and the app writes you a one-page summary on request. Explore factual comparisons against existing alternatives below.
+              When you need an anchor to begin writing, explore our curated collections for therapy preparation, cognitive behavioral examination, weekly reviews, and quiet evenings.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {COMPARISONS.map((comp) => (
+            {PROMPTS.map((p) => (
               <Link
-                key={comp.slug}
-                href={`/vs/${comp.slug}`}
+                key={p.slug}
+                href={`/prompts/${p.slug}`}
                 className="p-6 rounded-(--r-inner) bg-[#12141a] border border-[#242830] hover:border-[#7ac4d1]/40 transition-all duration-220 group flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-meta text-(--ink-3) mb-2 font-medium">
-                    {comp.competitorType}
+                  <div className="text-meta text-[#7ac4d1] mb-2 font-medium">
+                    {p.category.toUpperCase()}
                   </div>
                   <h2 className="text-question text-(--ink) mb-3 group-hover:text-[#7ac4d1] transition-colors">
-                    Kept vs {comp.competitorName}
+                    {p.title}
                   </h2>
                   <p className="text-[15px] text-(--ink-2) leading-relaxed mb-6">
-                    {comp.lead}
+                    {p.lead}
                   </p>
                 </div>
 
                 <div className="text-meta text-[#7ac4d1] inline-flex items-center gap-1">
-                  Read architectural comparison →
+                  View prompt collection →
                 </div>
               </Link>
             ))}
@@ -77,10 +77,10 @@ export default function ComparisonsIndexPage() {
           <div className="pt-8 border-t border-[#242830] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <p className="text-question text-(--ink) mb-1">
-                Ready to try Kept?
+                Ready to write freely?
               </p>
               <p className="text-meta text-(--ink-3)">
-                Free to write, always. The summary is the paid part.
+                Free to write, always. Encrypted on your phone.
               </p>
             </div>
             <PrimaryButton />

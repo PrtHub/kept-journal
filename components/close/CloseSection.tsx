@@ -5,7 +5,7 @@ import Reveal from "@/components/common/Reveal";
 export default function CloseSection() {
   return (
     <section className="section-spacing text-center">
-      <Reveal className="max-w-270 mx-auto px-6 flex flex-col items-center justify-center">
+      <Reveal className="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center">
         <div className="mb-6">
           <LogoMark size={56} />
         </div>

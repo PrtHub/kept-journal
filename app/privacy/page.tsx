@@ -51,7 +51,7 @@ export default function PrivacyPage() {
       <Navbar />
 
       <main id="main-content" className="relative z-10 pt-32 pb-24 flex-1">
-        <div className="max-w-270 mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="prose-container w-full mx-auto">
             <Link
               href="/"

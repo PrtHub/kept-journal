@@ -6,21 +6,65 @@ import AmbientField from "@/components/background/AmbientField";
 import SectionLabel from "@/components/common/SectionLabel";
 import LogoMark from "@/components/common/LogoMark";
 import PrimaryButton from "@/components/common/PrimaryButton";
+import { SITE_URL } from "@/lib/config";
 
 export const metadata = {
   title: "About — Kept",
   description:
     "A private journal for iPhone that records, organises, and summarises what you wrote. No account, no server, encrypted on device.",
+  alternates: { canonical: `${SITE_URL}/about` },
+  openGraph: {
+    title: "About Kept — A Private Journal for iPhone",
+    description:
+      "A private journal for iPhone that records, organises, and summarises what you wrote. No account, no server, encrypted on device.",
+    url: `${SITE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": `${SITE_URL}/about#webpage`,
+        url: `${SITE_URL}/about`,
+        name: "About Kept",
+        description:
+          "Kept is a private journal for iPhone that records, organises, and summarises what you wrote. Encrypted on device with zero accounts.",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/about#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "About",
+            item: `${SITE_URL}/about`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="relative min-h-screen flex flex-col justify-between selection:bg-[#7ac4d1]/30 selection:text-(--ink)">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <AmbientField />
       <Navbar />
 
       <main id="main-content" className="relative z-10 pt-32 pb-24 flex-1">
-        <div className="max-w-270 mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="prose-container w-full mx-auto">
             <Link
               href="/"
@@ -62,16 +106,19 @@ export default function AboutPage() {
                 </p>
                 <ul className="list-disc list-inside space-y-2 pl-2 text-[16px]">
                   <li>
-                    <strong className="text-(--ink)">On-device storage:</strong> All entries, dates, selected photos, and observations are stored in an encrypted SQLite database on your iPhone.
+                    <strong className="text-(--ink)">On-device SQLCipher storage:</strong> All entries, dates, selected photos, and observations are stored in an AES-256 encrypted SQLite database on your iPhone.
                   </li>
                   <li>
-                    <strong className="text-(--ink)">Keychain encryption:</strong> The cryptographic key protecting your journal is held in the secure iOS Keychain.
+                    <strong className="text-(--ink)">Keychain encryption:</strong> The 256-bit cryptographic key protecting your journal is held in the secure iOS Keychain under AFTER_FIRST_UNLOCK protection.
                   </li>
                   <li>
                     <strong className="text-(--ink)">No accounts or servers:</strong> There is no sign-up process, no user database, and no server synchronising your journal entries.
                   </li>
                   <li>
-                    <strong className="text-(--ink)">Ephemeral summarisation:</strong> When you tap to generate a summary, only the entries from that chosen period are sent to be written up. Once completed, the text is returned to your device and is not retained or used for model training.
+                    <strong className="text-(--ink)">Ephemeral summarisation:</strong> When you tap to generate a summary, only the entries from that chosen period are sent via OpenRouter to be written up. Once completed, the text is returned to your device and is not retained or used for model training.
+                  </li>
+                  <li>
+                    <strong className="text-(--ink)">Passphrase-encrypted backups:</strong> You can export standalone backups encrypted with scrypt and XChaCha20-Poly1305, including photos, locked with your own private passphrase.
                   </li>
                 </ul>
               </section>
@@ -104,14 +151,14 @@ export default function AboutPage() {
                   The paid feature is the generated one-page summary. It produces counted figures from your entries, extracts exact quoted sentences, and frames three questions for reflection before your next session.
                 </p>
                 <div className="p-6 rounded-(--r-inner) bg-[#12141a] border border-[#242830] space-y-3">
-                  <p className="text-[15px] font-medium text-(--ink)">Transparent pricing:</p>
+                  <p className="text-[15px] font-medium text-(--ink)">Three stakes:</p>
                   <ul className="space-y-2 text-[14px] text-(--ink-2)">
-                    <li><strong className="text-(--ink)">A Month:</strong> $9.99 / month (billed monthly)</li>
-                    <li><strong className="text-(--ink)">A Year:</strong> $39.99 / year (67% less over twelve months)</li>
-                    <li><strong className="text-(--ink)">No End Date:</strong> $99.99 (paid once, never renews)</li>
+                    <li><strong className="text-(--ink)">A Month:</strong> $9.99 / month</li>
+                    <li><strong className="text-(--ink)">A Year:</strong> $39.99 / year</li>
+                    <li><strong className="text-(--ink)">No End Date:</strong> $99.99 paid once, never renews</li>
                   </ul>
                   <p className="text-meta text-(--ink-3) pt-2">
-                    Monthly and yearly subscriptions renew until cancelled in your Apple ID Settings. You receive a reminder three days before any renewal.
+                    Subscriptions renew until cancelled in your Apple ID Settings. You receive a reminder notice three days before any renewal.
                   </p>
                 </div>
               </section>

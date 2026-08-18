@@ -119,8 +119,8 @@ export default async function FeatureDetailPage({ params }: PageProps) {
       <Navbar />
 
       <main id="main-content" className="relative z-10 pt-32 pb-24 flex-1">
-        <div className="max-w-270 mx-auto px-6">
-          <div className="prose-container w-full mx-auto">
+        <div className="max-w-4xl mx-auto px-6">
+          <div>
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-meta text-(--ink-3)">
               <Link href="/" className="hover:text-(--ink) transition-colors">
@@ -139,7 +139,7 @@ export default async function FeatureDetailPage({ params }: PageProps) {
               {feat.headline}
             </h1>
 
-            <p className="text-lead text-(--ink-2) mb-12">
+            <p className="text-lead text-(--ink-2) mb-12 max-w-3xl">
               {feat.lead}
             </p>
 

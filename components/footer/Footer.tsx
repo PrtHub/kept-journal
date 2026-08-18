@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-[#242830] pt-12 pb-8">
-      <div className="max-w-270 mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         {/* Directory links */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pb-10 mb-8 border-b border-[#242830]/60 text-[14px]">
           <div>
@@ -20,8 +20,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/vs/notion" className="hover:text-(--ink-2) transition-colors">
-                  vs Notion
+                <Link href="/alternatives" className="hover:text-(--ink-2) transition-colors">
+                  App Alternatives
                 </Link>
               </li>
               <li>
@@ -33,26 +33,26 @@ export default function Footer() {
           </div>
 
           <div>
-            <span className="text-meta text-(--ink) block mb-3 font-medium">Workflows</span>
+            <span className="text-meta text-(--ink) block mb-3 font-medium">Resources</span>
             <ul className="space-y-2 text-(--ink-3)">
               <li>
-                <Link href="/for/therapy-clients" className="hover:text-(--ink-2) transition-colors">
-                  For Therapy Clients
+                <Link href="/prompts/therapy-session-prep" className="hover:text-(--ink-2) transition-colors">
+                  Therapy Prompts
                 </Link>
               </li>
               <li>
-                <Link href="/for/cbt-and-session-prep" className="hover:text-(--ink-2) transition-colors">
-                  CBT &amp; Session Prep
+                <Link href="/prompts/weekly-review-questions" className="hover:text-(--ink-2) transition-colors">
+                  Weekly Review Prompts
                 </Link>
               </li>
               <li>
-                <Link href="/for/weekly-reviews" className="hover:text-(--ink-2) transition-colors">
-                  Weekly Reviews
+                <Link href="/guides/how-to-journal-for-therapy" className="hover:text-(--ink-2) transition-colors">
+                  Therapy Journaling Guide
                 </Link>
               </li>
               <li>
-                <Link href="/for" className="text-[#7ac4d1] hover:underline">
-                  All workflows →
+                <Link href="/prompts" className="text-[#7ac4d1] hover:underline">
+                  All prompts &amp; guides →
                 </Link>
               </li>
             </ul>
@@ -72,8 +72,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/features/photo-backfill" className="hover:text-(--ink-2) transition-colors">
-                  Photo Backfill
+                <Link href="/for/therapy-clients" className="hover:text-(--ink-2) transition-colors">
+                  For Therapy Clients
                 </Link>
               </li>
               <li>

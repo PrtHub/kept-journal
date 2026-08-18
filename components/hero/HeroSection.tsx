@@ -8,7 +8,7 @@ export default function HeroSection() {
     // svh, not vh — mobile browser chrome otherwise makes the hero taller than
     // the screen it is supposed to exactly fill.
     <section className="relative min-h-[max(620px,calc(100svh-64px))] flex items-center pt-28 pb-20 lg:pt-24 lg:pb-16">
-      <div className="max-w-270 w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-8 items-center">
+      <div className="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-8 items-center">
         {/* Left column: copy */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           <Reveal on="load" delay={200} y={12}>

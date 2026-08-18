@@ -20,7 +20,7 @@ const FACTS = [
 export default function PageFeatureSection() {
   return (
     <section className="section-spacing">
-      <div className="max-w-270 mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <Reveal className="max-w-[62ch] mx-auto mb-14">
           <div className="text-center">
             <SectionLabel>THE PAID PART</SectionLabel>

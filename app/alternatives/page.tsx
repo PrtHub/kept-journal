@@ -5,23 +5,23 @@ import Footer from "@/components/footer/Footer";
 import AmbientField from "@/components/background/AmbientField";
 import SectionLabel from "@/components/common/SectionLabel";
 import PrimaryButton from "@/components/common/PrimaryButton";
-import { COMPARISONS } from "@/lib/seo-data";
+import { ALTERNATIVES } from "@/lib/seo-data";
 import { SITE_URL } from "@/lib/config";
 
 export const metadata = {
-  title: "Journal App Comparisons — Kept vs Day One, Apple Journal & More",
+  title: "Best Journal App Alternatives for iPhone — Kept",
   description:
-    "Factual comparisons between Kept and other journaling applications. Explore local SQLite encryption, one-page summaries, and pricing differences.",
-  alternates: { canonical: `${SITE_URL}/vs` },
+    "Discover private, local-first alternatives to Day One, Apple Journal, Notion, Stoic, Rosebud, and Daylio.",
+  alternates: { canonical: `${SITE_URL}/alternatives` },
   openGraph: {
-    title: "Journal App Comparisons — Kept vs Day One, Apple Journal & More",
+    title: "Best Journal App Alternatives for iPhone — Kept",
     description:
-      "Factual comparisons between Kept and other journaling applications. Explore local SQLite encryption, one-page summaries, and pricing differences.",
-    url: `${SITE_URL}/vs`,
+      "Discover private, local-first alternatives to Day One, Apple Journal, Notion, Stoic, Rosebud, and Daylio.",
+    url: `${SITE_URL}/alternatives`,
   },
 };
 
-export default function ComparisonsIndexPage() {
+export default function AlternativesIndexPage() {
   return (
     <div className="relative min-h-screen flex flex-col justify-between selection:bg-[#7ac4d1]/30 selection:text-(--ink)">
       <AmbientField />
@@ -37,37 +37,37 @@ export default function ComparisonsIndexPage() {
           </Link>
 
           <div className="max-w-3xl mb-12">
-            <SectionLabel>APP COMPARISONS</SectionLabel>
+            <SectionLabel>APP ALTERNATIVES</SectionLabel>
             <h1 className="text-display mb-6 text-(--ink)">
-              How Kept compares to other journals
+              Find a better journaling alternative
             </h1>
 
             <p className="text-lead text-(--ink-2)">
-              Kept is built on a different architectural premise: your database lives encrypted on your iPhone with no remote account, and the app writes you a one-page summary on request. Explore factual comparisons against existing alternatives below.
+              Looking for a journal without cloud vulnerabilities, recurring subscription locks on basic writing, streak guilt, or conversational chatbot interruptions? Explore why people switch to Kept.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {COMPARISONS.map((comp) => (
+            {ALTERNATIVES.map((alt) => (
               <Link
-                key={comp.slug}
-                href={`/vs/${comp.slug}`}
+                key={alt.slug}
+                href={`/alternatives/${alt.slug}`}
                 className="p-6 rounded-(--r-inner) bg-[#12141a] border border-[#242830] hover:border-[#7ac4d1]/40 transition-all duration-220 group flex flex-col justify-between"
               >
                 <div>
                   <div className="text-meta text-(--ink-3) mb-2 font-medium">
-                    {comp.competitorType}
+                    {alt.targetType.toUpperCase()}
                   </div>
                   <h2 className="text-question text-(--ink) mb-3 group-hover:text-[#7ac4d1] transition-colors">
-                    Kept vs {comp.competitorName}
+                    Best {alt.targetApp} Alternative
                   </h2>
                   <p className="text-[15px] text-(--ink-2) leading-relaxed mb-6">
-                    {comp.lead}
+                    {alt.lead}
                   </p>
                 </div>
 
                 <div className="text-meta text-[#7ac4d1] inline-flex items-center gap-1">
-                  Read architectural comparison →
+                  Read why people switch →
                 </div>
               </Link>
             ))}
@@ -80,7 +80,7 @@ export default function ComparisonsIndexPage() {
                 Ready to try Kept?
               </p>
               <p className="text-meta text-(--ink-3)">
-                Free to write, always. The summary is the paid part.
+                Free to write, always. Encrypted on your phone.
               </p>
             </div>
             <PrimaryButton />

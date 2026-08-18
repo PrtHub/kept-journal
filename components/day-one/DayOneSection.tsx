@@ -5,7 +5,7 @@ import YearGridMockup from "./YearGridMockup";
 export default function DayOneSection() {
   return (
     <section className="section-spacing">
-      <div className="max-w-270 mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Left column: copy */}
         <Reveal className="lg:col-span-6">
           <div className="flex flex-col items-start text-left">
