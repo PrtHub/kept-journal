@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
   },
+  verification: {
+    google: "Pg4XRjxutCpgtRN0YZKJxlNnkip7vuYuuSQuQHfTcp8",
+  },
 };
 
 export const viewport: Viewport = {
