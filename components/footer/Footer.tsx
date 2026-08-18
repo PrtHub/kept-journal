@@ -4,8 +4,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-[#242830] pt-14 pb-8">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Comprehensive Directory Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pb-12 mb-8 border-b border-[#242830]/60 text-[14px]">
+        {/* Comprehensive 6-Column Directory Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 pb-12 mb-8 border-b border-[#242830]/60 text-[14px]">
           {/* Column 1: Comparisons */}
           <div>
             <span className="text-meta text-(--ink) block mb-3 font-medium">Comparisons</span>
@@ -49,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-2 text-(--ink-3)">
               <li>
                 <Link href="/alternatives/day-one" className="hover:text-(--ink-2) transition-colors">
-                  Day One Alternative
+                  Day One Alt
                 </Link>
               </li>
               <li>
@@ -59,17 +59,17 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/alternatives/notion" className="hover:text-(--ink-2) transition-colors">
-                  Notion Alternative
+                  Notion Alt
                 </Link>
               </li>
               <li>
                 <Link href="/alternatives/daylio" className="hover:text-(--ink-2) transition-colors">
-                  Daylio Alternative
+                  Daylio Alt
                 </Link>
               </li>
               <li>
                 <Link href="/alternatives/rosebud" className="hover:text-(--ink-2) transition-colors">
-                  Rosebud Alternative
+                  Rosebud Alt
                 </Link>
               </li>
               <li>
@@ -86,7 +86,7 @@ export default function Footer() {
             <ul className="space-y-2 text-(--ink-3)">
               <li>
                 <Link href="/for/therapy-clients" className="hover:text-(--ink-2) transition-colors">
-                  For Therapy Clients
+                  For Therapy
                 </Link>
               </li>
               <li>
@@ -96,7 +96,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/for/anxiety-and-overthinking" className="hover:text-(--ink-2) transition-colors">
-                  Anxiety &amp; Overthinking
+                  Anxiety &amp; Loops
                 </Link>
               </li>
               <li>
@@ -117,13 +117,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Prompts & Guides */}
+          {/* Column 4: Prompts */}
           <div>
-            <span className="text-meta text-(--ink) block mb-3 font-medium">Prompts &amp; Guides</span>
+            <span className="text-meta text-(--ink) block mb-3 font-medium">Prompts</span>
             <ul className="space-y-2 text-(--ink-3)">
               <li>
                 <Link href="/prompts/therapy-session-prep" className="hover:text-(--ink-2) transition-colors">
                   Therapy Prompts
+                </Link>
+              </li>
+              <li>
+                <Link href="/prompts/anxiety-and-overthinking" className="hover:text-(--ink-2) transition-colors">
+                  Anxiety Prompts
                 </Link>
               </li>
               <li>
@@ -133,17 +138,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/prompts/weekly-review-questions" className="hover:text-(--ink-2) transition-colors">
-                  Weekly Review Prompts
+                  Weekly Questions
                 </Link>
               </li>
               <li>
-                <Link href="/guides/how-to-journal-for-therapy" className="hover:text-(--ink-2) transition-colors">
-                  Therapy Guide
-                </Link>
-              </li>
-              <li>
-                <Link href="/guides/local-first-journaling-privacy" className="hover:text-(--ink-2) transition-colors">
-                  Local-First Privacy
+                <Link href="/prompts/evening-reflection" className="hover:text-(--ink-2) transition-colors">
+                  Evening Prompts
                 </Link>
               </li>
               <li>
@@ -154,9 +154,41 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 5: Architecture & Legal */}
+          {/* Column 5: Guides */}
           <div>
-            <span className="text-meta text-(--ink) block mb-3 font-medium">Architecture &amp; App</span>
+            <span className="text-meta text-(--ink) block mb-3 font-medium">Guides</span>
+            <ul className="space-y-2 text-(--ink-3)">
+              <li>
+                <Link href="/guides/how-to-journal-for-therapy" className="hover:text-(--ink-2) transition-colors">
+                  Journal for Therapy
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides/local-first-journaling-privacy" className="hover:text-(--ink-2) transition-colors">
+                  Local-First Privacy
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides/how-to-do-a-weekly-review" className="hover:text-(--ink-2) transition-colors">
+                  10-Min Weekly Review
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides/adhd-journaling-without-burnout" className="hover:text-(--ink-2) transition-colors">
+                  ADHD Without Burnout
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides" className="text-[#7ac4d1] hover:underline pt-1 inline-block">
+                  All guides →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 6: Architecture & Legal */}
+          <div>
+            <span className="text-meta text-(--ink) block mb-3 font-medium">Architecture</span>
             <ul className="space-y-2 text-(--ink-3)">
               <li>
                 <Link href="/features/encrypted-offline-storage" className="hover:text-(--ink-2) transition-colors">
@@ -174,8 +206,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-(--ink-2) transition-colors">
-                  About Kept
+                <Link href="/features" className="hover:text-(--ink-2) transition-colors">
+                  All Architecture
                 </Link>
               </li>
               <li>
